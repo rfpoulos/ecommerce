@@ -7,23 +7,10 @@ import Category from './category';
 // import Profile from './profile';
 import Cart from './cart';
 import Product from './product';
-import categories from './json/categories';
 import TopNavbar from './top-navbar';
-
-let CategoryNav = () =>
-  <ul className="category-nav">
-    {
-      categories.map(category => 
-        <li>
-          <Link to={
-            { pathname: '/categories/' + category.name,
-              categoryId: category.id
-            }}>
-            {category.name}</Link>
-        </li>
-      )
-    }
-  </ul>;
+import CategoryNav from './category-nav';
+import Profile from './profile';
+import SignIn from './sign-in';
 
 let App = () =>
   <Router>
@@ -32,6 +19,8 @@ let App = () =>
       <div className="main-section">
         <CategoryNav />
         <Switch>
+          <Route path="/profile/Sign In" component={SignIn} />
+          <Route path="/profile/:profileName" component={Profile} />
           <Route path="/homepage" component={HomePage} />
           <Route path="/cart" component={Cart} />
           <Route path="/categories/:categoryName" exact component={Category} />

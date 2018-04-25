@@ -6,7 +6,8 @@ import reducerHandlers from './reducer-handlers';
 const initialState = {
     cart: [],
     currentProduct: {},
-    userName: 'rfpoulos'
+    userName: 'Sign In',
+    userObject: {}
 }
 
 let fallback = (state, action) => state;

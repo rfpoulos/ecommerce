@@ -1,22 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Switch } from 'react-router-dom';
 
-let TopNavbarJSX = ({ userName }) =>
+let TopNavbarJSX = ({ userName, cart }) =>
     <ul className="top-nav">
-        <li>{userName}</li>
         <li>
-          <Link to="/">Home</Link>
+            <Link to={'/profile/' + userName}>
+                {userName}
+            </Link>
         </li>
-        {/* <Link to="/users/">Profile</Link> */}
         <li>
-          <Link to="/cart">Cart</Link>
+            <Link to="/">Home</Link>
+        </li>
+        <li>
+            <Link to="/cart">Cart ({cart.length})</Link>
        </li>
     </ul>;
 
 let mapStateToProps = (state) => {
-    return { userName: state.userName };
+    return { userName: state.userName,
+             cart: state.cart };
 }
 
 let mapDispatchToProps = (dispatch) => {

@@ -6,6 +6,11 @@ let updateUser = (state, action) =>
 
 updateUser.toString = () => 'UPDATE_USER';
 
+let updateUserObject = (state, action) =>
+    ({...state, userObject: action.payload});
+
+updateUserObject.toString = () => 'UPDATE_USER_OBJECT';
+
 let addToCart = (state, action) => {
     let addedItem = action.payload
     let totalItems = state.cart.concat([addedItem]);
@@ -14,15 +19,24 @@ let addToCart = (state, action) => {
 
 addToCart.toString = () => 'ADD_TO_CART';
 
-let updateProduct = (state, action) =>
-    ({...state, currentProduct: action.payload});
+let removeFromCart = (state, action) => {
+    let removedItemId = action.payload
+    let totalItems = state.cart.filter(item => item.cartId != removedItemId);
+    return {...state, cart: totalItems }
+}
 
-updateProduct.toString = () => 'UPDATE_PRODUCT';
+removeFromCart.toString = () => 'REMOVE_FROM_CART';
+
+let emptyCart = (state, action) =>
+    ({...state, cart: [] });
+
+emptyCart.toString = () => 'EMPTY_CART';
 
 let reducerHandlers = {
     [updateUser]: updateUser,
     [addToCart]: addToCart,
-    [updateProduct]: updateProduct
+    [removeFromCart]: removeFromCart,
+    [emptyCart]: emptyCart
 };
 
 export default reducerHandlers;

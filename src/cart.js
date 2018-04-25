@@ -7,8 +7,21 @@ let CartJSX = ({cart, dispatch}) =>
         <h1>This is the Cart!</h1>
         {
             cart.map(item => 
-                <div>{item.name}</div>)
+                <div className="cart-item">
+                    <div>{item.name}</div>
+                    <button onClick={
+                        () => dispatch({
+                            type: 'REMOVE_FROM_CART',
+                            payload: item.cartId
+                        })
+                        }>Remove Item</button>
+                </div>)
         }
+        <button onClick={ () =>
+            dispatch({
+                type: 'EMPTY_CART'
+            })
+        }>Empty Cart</button>
     </div>;
 
 let mapStateToProps = (state) => {

@@ -30,13 +30,11 @@
 }
  
 ul {
-  overflow: auto;
+  display: flex;
   list-style-type: none;
 }
  
 li {
-  height: 25px;
-  float: left;
   margin-right: 0px;
   border-right: 1px solid #aaa;
   padding: 0 20px;
@@ -66,4 +64,8 @@ li a:hover {
 li.active a {
   font-weight: bold;
   color: #333;
+}
+
+.cart-item {
+  display: flex;
 }
