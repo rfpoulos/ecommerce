@@ -4,15 +4,15 @@ import { connect } from 'react-redux';
 
 let ProfileJSX = ({match, userObject, dispatch}) => 
     <div>
-        <h1>{userObject.firstname}</h1>
+        <h1>{userObject.user.username}</h1>
         <button onClick={
             () => {
                 dispatch({
-                    type: 'UPDATE_USER',
-                    payload: 'Sign In'
+                    type: 'UPDATE_USER_OBJECT',
+                    payload: {user: {username: 'Sign In'}}
                 })
                 dispatch({
-                    type: 'UPDATE_USER_OBJECT',
+                    type: 'USER_SIGN_IN',
                     payload: {}
                 })
             }
@@ -20,8 +20,7 @@ let ProfileJSX = ({match, userObject, dispatch}) =>
     </div>
 
 let mapStateToProps = (state) => {
-    return { userName: state.userName,
-             userObject: state.userObject };
+    return { userObject: state.userObject };
 }
 
 let mapDispatchToProps = (dispatch) => {

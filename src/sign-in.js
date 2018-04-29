@@ -1,27 +1,39 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import users from './json/users'
-import { findUserByUsername } from './vanilla'
+import { findUserByUsername } from './vanilla';
+import { fetchSignIn } from './fetch-data';
 
-let SignInJSX = ({userName, dispatch}) => 
+let SignInJSX = ({userObject, userSignIn, dispatch}) => 
     <div>
-        <input type="text" value={userName} onChange={(event) =>
+        <input type="text" value={userSignIn.identifier} onChange={(event) =>
             dispatch({
-                type: 'UPDATE_USER',
-                payload: event.target.value
+                type: 'USER_SIGN_IN',
+                payload: {
+                    identifier: event.target.value,
+                    password: userSignIn.password
+                }
             })} />
-        <button onClick={
+        <input type="text" value={userSignIn.password} onChange={(event) =>
             dispatch({
+                type: 'USER_SIGN_IN',
+                payload: {
+                    identifier: userSignIn.identifier,
+                    password: event.target.value
+                }
+            })} />
+        <button onClick={() => 
+            fetchSignIn(userSignIn)
+            .then(data => dispatch({
                 type: 'UPDATE_USER_OBJECT',
-                payload: findUserByUsername(userName, users)
-            })
-        }>Change User</button>
+                payload: data
+            }))
+        }>Sign In</button>
     </div>
 
 let mapStateToProps = (state) => {
-    return { userName: state.userName,
-             userObject: state.userObject };
+    return { userObject: state.userObject,
+             userSignIn: state.userSignIn };
 }
 
 let mapDispatchToProps = (dispatch) => {

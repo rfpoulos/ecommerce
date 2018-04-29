@@ -4,7 +4,6 @@ import './App.css';
 import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import HomePage from './home-page';
 import Category from './category';
-// import Profile from './profile';
 import Cart from './cart';
 import Product from './product';
 import TopNavbar from './top-navbar';
@@ -21,10 +20,10 @@ let App = () =>
         <Switch>
           <Route path="/profile/Sign In" component={SignIn} />
           <Route path="/profile/:profileName" component={Profile} />
-          <Route path="/homepage" component={HomePage} />
           <Route path="/cart" component={Cart} />
           <Route path="/categories/:categoryName" exact component={Category} />
           <Route path="/categories/:categoryName/:productName" component={Product} />
+          <Route path="/" component={HomePage} />
         </Switch>
       </div>
     </div>

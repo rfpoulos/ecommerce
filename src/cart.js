@@ -8,7 +8,7 @@ let CartJSX = ({cart, dispatch}) =>
         {
             cart.map(item => 
                 <div className="cart-item">
-                    <div>{item.name}</div>
+                    <div>{item.title}</div>
                     <button onClick={
                         () => dispatch({
                             type: 'REMOVE_FROM_CART',

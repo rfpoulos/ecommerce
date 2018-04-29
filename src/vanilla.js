@@ -1,7 +1,7 @@
 export let filterProductsByCategory = (categoryId, products) => 
     products.filter(product => product.categoryId === categoryId);
 
-let generateCartId = (() => {
+export let generateCartId = (() => {
     let currentId = 0;
     return () => {
         currentId+= 1;
@@ -17,7 +17,7 @@ export let findProductByName = (productName, products, cart) => {
 }
 
 export let findCategoryIdByName = (categoryName, categories) =>
-    categories.find(category => categoryName === category.name).id;
+    categories.find(category => categoryName === category.title).id;
 
 export let findUserByUsername = (userName, users) => 
     users.find(user => userName === user.firstname + ' ' + user.lastname);

@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { Link, Switch } from 'react-router-dom';
 
-let TopNavbarJSX = ({ userName, cart }) =>
+let TopNavbarJSX = ({ userObject, cart }) =>
     <ul className="top-nav">
         <li>
-            <Link to={'/profile/' + userName}>
-                {userName}
+            <Link to={'/profile/' + userObject.user.username}>
+                {userObject.user.username}
             </Link>
         </li>
         <li>
@@ -19,7 +19,7 @@ let TopNavbarJSX = ({ userName, cart }) =>
     </ul>;
 
 let mapStateToProps = (state) => {
-    return { userName: state.userName,
+    return { userObject: state.userObject,
              cart: state.cart };
 }
 
